@@ -1,5 +1,6 @@
-type Props = Record<string, any>
-type ComponentGetter = (type: string) => string | ((props: Props) => string | JSX.Element) | undefined
+/// <reference path="./mobiledoc.d.ts" />
+
+type ComponentGetter = (type: string) => string | ((props: Record<string, any>) => string | JSX.Element) | undefined
 type Renderer = (options: RendererOptions, mobiledoc: Mobiledoc, section: Section) => JSX.Element
 
 interface RendererOptions {
@@ -22,7 +23,7 @@ const SectionTypeRendererMap = {
   [SectionTypeCardId]: CardSectionRenderer
 } as Record<number, Renderer>
 
-const attributesToProps = (attributes: string[]): Props =>
+const attributesToProps = (attributes: string[]): Record<string, any> =>
   attributes.reduce((acc, value, index) => (index % 2 !== 0 ? { ...acc, [attributes[index - 1]]: value } : acc), {})
 
 const MobiledocRendererError = (message: string) => Error('MobiledocJsxRenderer: ' + message)
