@@ -1,0 +1,34 @@
+{
+  "name": "mobiledoc-jsx-renderer",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "gpoitch<garth22@gmail.com>",
+  "type": "module",
+  "main": "dist/index.jsx",
+  "module": "dist/index.jsx",
+  "types": "dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "flt format && flt lint && tsc && npm run test:js:react && npm run test:js:preact",
+    "test:js:react": "tsx --tsconfig tsconfig-react-jsx.json tests/index.tsx",
+    "test:js:preact": "tsx --tsconfig tsconfig-preact-jsx.json tests/index.tsx --preact",
+    "build": "cp src/types.d.ts dist && esbuild src/index.tsx --outfile=dist/index.jsx --minify --sourcemap",
+    "clean": "rm -rf dist && mkdir dist",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.1",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "esbuild": "^0.17.10",
+    "flt": "^0.45.0",
+    "preact": "^10.12.1",
+    "preact-render-to-string": "^5.2.6",
+    "react-dom": "^18.2.0",
+    "tsx": "^3.12.3",
+    "typescript": "^4.9.5"
+  },
+  "prettier": "flt/config/prettier.config.js"
+}
