@@ -3,19 +3,22 @@
   "version": "1.0.0",
   "license": "MIT",
   "author": "gpoitch<garth22@gmail.com>",
-  "type": "module",
-  "main": "dist/index.jsx",
-  "module": "dist/index.jsx",
-  "types": "dist/types.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "dist/index.js",
+    "./jsx": "dist/jsx.jsx"
+  },
   "files": [
     "dist"
   ],
   "scripts": {
-    "test": "flt format && flt lint && tsc && npm run test:js:react && npm run test:js:preact",
-    "test:js:react": "tsx --tsconfig tsconfig-react-jsx.json tests/index.tsx",
-    "test:js:preact": "tsx --tsconfig tsconfig-preact-jsx.json tests/index.tsx --preact",
-    "build": "cp src/types.d.ts dist && esbuild src/index.tsx --outfile=dist/index.jsx --minify --sourcemap",
-    "clean": "rm -rf dist && mkdir dist",
+    "test": "flt format && flt lint && tsc --noEmit && npm run test:js && npm run test:js:preact",
+    "test:js": "tsx --tsconfig tsconfig-tests.json tests/index.tsx",
+    "test:js:preact": "tsx --tsconfig tsconfig-tests-preact.json tests/index.tsx --preact",
+    "build": "esbuild src/index.tsx --outfile=dist/jsx.jsx --jsx=preserve && esbuild src/index.tsx --outfile=dist/index.js --jsx=automatic && cp src/mobiledoc.d.ts dist && tsc --emitDeclarationOnly && sed -i '' 's|../src/|./|g' dist/index.d.ts",
+    "clean": "rm -rf dist",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {

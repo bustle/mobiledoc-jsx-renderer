@@ -1,3 +1,5 @@
+/// <reference path="./mobiledoc.d.ts" />
+
 type Props = Record<string, any>
 type ComponentGetter = (type: string) => string | ((props: Props) => string | JSX.Element) | undefined
 type Renderer = (options: RendererOptions, mobiledoc: Mobiledoc, section: Section) => JSX.Element

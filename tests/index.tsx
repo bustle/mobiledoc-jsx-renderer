@@ -1,6 +1,6 @@
 import { MobiledocJsxRenderer } from '../src'
 import { renderToString as reactRenderToString } from 'react-dom/server'
-import { renderToString as preactRenderToString } from 'preact-render-to-string'
+import preactRenderToString from 'preact-render-to-string'
 import { strictEqual, throws } from 'assert'
 import { describe, it } from 'node:test'
 import { specs, SimpleMobiledoc, CardMobiledoc } from './specs'
