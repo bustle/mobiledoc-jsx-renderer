@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference path="./mobiledoc.d.ts" />
 
 type Props = Record<string, any>
